@@ -22,7 +22,6 @@
 		7488CF412548A129001A5ED6 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488CF402548A129001A5ED6 /* WeatherModel.swift */; };
 		7488CF462548A473001A5ED6 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7488CF452548A473001A5ED6 /* WeatherManager.swift */; };
 		74D2A86E256D2BB100994520 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2A86D256D2BB100994520 /* LocationManager.swift */; };
-		74E3B52D2570411900C8A0BE /* WeatherCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E3B52C2570411900C8A0BE /* WeatherCustomView.xib */; };
 		74E3B5322570415A00C8A0BE /* WeatherCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		7488CF402548A129001A5ED6 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		7488CF452548A473001A5ED6 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
 		74D2A86D256D2BB100994520 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		74E3B52C2570411900C8A0BE /* WeatherCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCustomView.xib; sourceTree = SOURCE_ROOT; };
 		74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherCustomView.swift; path = "../../exam-ios_copy2_notworking/WeatherCustomView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +126,6 @@
 				7488CF3925479D7B001A5ED6 /* WeatherTableViewCell.swift */,
 				7488CF3A25479D7B001A5ED6 /* WeatherTableViewCell.xib */,
 				74D2A86D256D2BB100994520 /* LocationManager.swift */,
-				74E3B52C2570411900C8A0BE /* WeatherCustomView.xib */,
 				74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */,
 			);
 			path = Exam;
@@ -269,7 +266,6 @@
 				7488CF3C25479D7B001A5ED6 /* WeatherTableViewCell.xib in Resources */,
 				7488CF0425478533001A5ED6 /* LaunchScreen.storyboard in Resources */,
 				7488CF0125478533001A5ED6 /* Assets.xcassets in Resources */,
-				74E3B52D2570411900C8A0BE /* WeatherCustomView.xib in Resources */,
 				7488CEFF25478531001A5ED6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
