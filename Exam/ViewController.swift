@@ -16,18 +16,18 @@ struct Items {
     var myLocationLon: Double = 0.0
 }
 
-//class MapPin: NSObject, MKAnnotation {
-//   let title: String?
-//   let locationName: String
-//   let coordinate: CLLocationCoordinate2D
-//init(title: String, locationName: String, coordinate: CLLocationCoordinate2D) {
-//      self.title = title
-//      self.locationName = locationName
-//      self.coordinate = coordinate
-//   }
-//}
+protocol DataDelegate {
+    func printString(string: String)
+    
+}
 
-class ViewController: UIViewController, UITableViewDelegate {
+
+class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
+    func printString(string: String) {
+        print("printing delegate string")
+        print(string)
+    }
+    
     
 //    var weatherManager = WeatherManager()
     var getHKLocaton: Bool = true
@@ -93,15 +93,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         label.text = text
     }
     
-    @IBAction func didTapButton() {
-        let vc = storyboard?.instantiateViewController(identifier: "second") as! SecondViewController
-        vc.modalPresentationStyle = .fullScreen
-//        vc.completionHandler = { text in
-//            self.label.text = text
-//        }
-        present(vc, animated: true)
-        
-    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -271,68 +262,6 @@ extension ViewController: UITableViewDataSource {
 
     
 
-class SecondViewController: UIViewController {
-    let locManager = CLLocationManager()
-    let annotation = MKPointAnnotation()
-    
-    @IBOutlet weak var latitudeLabel: UILabel!
-    @IBOutlet weak var longitudeLabel: UILabel!
-    
-    public var completionHandler: ((String?) -> Void)?
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        view.backgroundColor = .lightGray
-        print("viewDidLoad")
-        setUpMapView()
-//        LocationManager.shared.startLocationUpdater { () -> ()? in
-//            self.showLocation()
-//        }
-        
-    }
-//
-//     func viewDidAppear() {
-//        LocationManager.shared.startLocationUpdater { () -> ()? in
-//            self.showLocation()
-//        }
-//    }
-//
-//    func showLocation() {
-//        print("before if let currentLocation")
-//        if let currentLocation = LocationManager.shared.currentLocation{
-//
-//            let coordinate = currentLocation.location.coordinate
-//
-//            self.latitudeLabel.text = "Latitude: \(coordinate.latitude)"
-//
-//            print("Latitude: \(coordinate.latitude)")
-//
-//            self.longitudeLabel.text = "Longitude: \(coordinate.longitude)"
-//
-//            print("Longitude: \(coordinate.longitude)")
-//
-//            setUpMapView()
-//        }
-//    }
-    
-    func setUpMapView() {
-         mapView.showsUserLocation = true
-         mapView.showsCompass = true
-         mapView.showsScale = true
-        
-      }
-
-    
-    @IBOutlet private var mapView: MKMapView!
-    
-    @IBAction func didTapSave() {
-//        completionHandler?(field.text)
-//        NotificationCenter.default.post(name: Notification.Name("text"), object: field.text)
-        dismiss(animated: true, completion: nil)
-    }
- 
-}
 
 
 

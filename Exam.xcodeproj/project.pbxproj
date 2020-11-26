@@ -24,6 +24,7 @@
 		74D2A86E256D2BB100994520 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2A86D256D2BB100994520 /* LocationManager.swift */; };
 		74E3B5322570415A00C8A0BE /* WeatherCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */; };
 		74E3B53F2570448E00C8A0BE /* WeatherCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */; };
+		74E3B5442570483800C8A0BE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3B5432570483800C8A0BE /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		74D2A86D256D2BB100994520 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherCustomView.swift; path = "../../exam-ios_copy2_notworking/WeatherCustomView.swift"; sourceTree = "<group>"; };
 		74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCustomView.xib; sourceTree = "<group>"; };
+		74E3B5432570483800C8A0BE /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				74D2A86D256D2BB100994520 /* LocationManager.swift */,
 				74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */,
 				74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */,
+				74E3B5432570483800C8A0BE /* SecondViewController.swift */,
 			);
 			path = Exam;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74E3B5442570483800C8A0BE /* SecondViewController.swift in Sources */,
 				7488CF3B25479D7B001A5ED6 /* WeatherTableViewCell.swift in Sources */,
 				7488CEFC25478531001A5ED6 /* ViewController.swift in Sources */,
 				7488CF462548A473001A5ED6 /* WeatherManager.swift in Sources */,
