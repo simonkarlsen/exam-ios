@@ -14,27 +14,7 @@ struct WeatherModel {
     let rainUnits: String?
     let tempUnits: String?
 
-    
-    //MARK: - Rain units
-    
-//    var rainUnitString: String {
-//        if ((rainUnits) != nil) {
-//            return ""
-//        } else {
-//            return rainUnits ?? ""
-//        }
-//    }
-//    
-//    //MARK: - Temp units
-//    
-//    var tempUnitsString: String {
-//        if ((tempUnits) != nil) {
-//            return ""
-//        } else {
-//            return tempUnits ?? ""
-//        }
-//    }
-    
+
     //MARK: - SUMMARY string
     var summary: String {
         switch condition {

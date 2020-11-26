@@ -2,14 +2,23 @@
 import UIKit
 import MapKit
 
+
 class SecondViewController: UIViewController {
     let locManager = CLLocationManager()
     let annotation = MKPointAnnotation()
     
+//    var datadelegate: DataDelegate?
+//    var moveHere: String = ""
+    var customDelegate: CustomDelegate?
+    var customView: WeatherCustomView?
+//
     @IBOutlet weak var latitudeLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet private var mapView: MKMapView!
     
     public var completionHandler: ((String?) -> Void)?
+    
+    
 
     
     override func viewDidLoad() {
@@ -17,36 +26,19 @@ class SecondViewController: UIViewController {
 //        view.backgroundColor = .lightGray
         print("viewDidLoad")
         setUpMapView()
-//        LocationManager.shared.startLocationUpdater { () -> ()? in
-//            self.showLocation()
-//        }
-        
+        print("after setUpMapView")
+        customDelegate?.giveDataToCustomView("I present you this data, good sir")
+        print("after giveDataToCustomView")
     }
+    
+   
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
 //
-//     func viewDidAppear() {
-//        LocationManager.shared.startLocationUpdater { () -> ()? in
-//            self.showLocation()
-//        }
-//    }
-//
-//    func showLocation() {
-//        print("before if let currentLocation")
-//        if let currentLocation = LocationManager.shared.currentLocation{
-//
-//            let coordinate = currentLocation.location.coordinate
-//
-//            self.latitudeLabel.text = "Latitude: \(coordinate.latitude)"
-//
-//            print("Latitude: \(coordinate.latitude)")
-//
-//            self.longitudeLabel.text = "Longitude: \(coordinate.longitude)"
-//
-//            print("Longitude: \(coordinate.longitude)")
-//
-//            setUpMapView()
-//        }
 //    }
     
+
     func setUpMapView() {
          mapView.showsUserLocation = true
          mapView.showsCompass = true
@@ -54,9 +46,4 @@ class SecondViewController: UIViewController {
         
       }
 
-    
-    @IBOutlet private var mapView: MKMapView!
-    
-
- 
 }

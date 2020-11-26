@@ -28,8 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         print(string)
     }
     
-    
-//    var weatherManager = WeatherManager()
+
     var getHKLocaton: Bool = true
     var counter: Int = 1
     
@@ -72,8 +71,9 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         }
         
         getHK()
-//        weatherManager.delegate = self
     }
+    
+    
     
     func showLocation() {
         print("before if let currentLocation")
@@ -135,8 +135,8 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
                 let coordinate = currentLocation.location.coordinate
                 
             
-                var lat = coordinate.latitude
-                var lon = coordinate.longitude
+                let lat = coordinate.latitude
+                let lon = coordinate.longitude
             
                 let weatherReq = WeatherManager(latitude: lat, longitude: lon)
                 Items.sharedInstance.myLocationLat = lat
@@ -170,25 +170,6 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
 extension ViewController: UITableViewDataSource {
     
     
-//    func didFailWithError(error: Error) {
-//        print(error)
-//    }
-//
-//    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
-//        print("in didUpdateWeather")
-//        print(weather.instant)
-////        DispatchQueue.main.async {
-////            // because of the closure, you have to add "self" before temperatureLabel..
-////            self.conditionImageView.image = UIImage(systemName: weather.conditionName)
-////            self.temperatureLabel.text = weather.
-////            self.cityLabel.text =
-////        }
-//    }
-    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("Items.sharedInstance.sharedArray.count")
         print(Items.sharedInstance.sharedArray.count)
@@ -197,17 +178,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
       
-            let customCell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as! WeatherTableViewCell
+        let customCell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as! WeatherTableViewCell
         
         let weatherModelList = Items.sharedInstance.sharedArray[indexPath.row]
-        
-//        let rain = listOfWeather[indexPath.row].rain
-//        let summary = listOfWeather[indexPath.row].summary
-//        let temperature = listOfWeather[indexPath.row].temperature
-//        let rainUnits = listOfWeather[indexPath.row].rainUnits
-//        let tempUnits = listOfWeather[indexPath.row].tempUnits
+
         let titles = ["Nå", "Neste time", "Neste 6 timer", "Neste 12 timer"]
         let tempWeather = ["Temperatur", "Vær", "Vær", "Vær"]
         
@@ -228,37 +203,12 @@ extension ViewController: UITableViewDataSource {
         customCell.rainUnit.text = rainUnits
         customCell.tempUnit.text = tempUnits
 
-//        cell.textLabel?.text = String(weatherList.summary1Hour)
         return customCell
-//        return cell
+
     }
     
-   
 }
 
-//extension ViewController: WeatherManagerDelegate {
-//    // adopted delegate from WeatherManager
-//    /*func didUpdateWeather(weatherManager: WeatherManager, weather: WeatherModel) {
-//        print(weather.temperature)
-//    }*/
-//
-//    // better convention than the one above:
-//    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
-//        // print(weather.temperature)
-//        DispatchQueue.main.async {
-//            // because of the closure, you have to add "self" before temperatureLabel..
-//            self.conditionImageView.image = UIImage(systemName: weather.conditionName)
-//            self.temperatureLabel.text = weather.temperatureString
-//            self.cityLabel.text = weather.cityName
-//
-//
-//        }
-//    }
-//
-//    func didFailWithError(error: Error) {
-//        print(error)
-//    }
-//}
 
     
 

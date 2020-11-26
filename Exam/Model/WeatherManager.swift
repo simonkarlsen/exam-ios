@@ -2,15 +2,8 @@
 //  WeatherManager.swift
 //  Exam
 //
-//  Created by Simon Bachmann Karlsen on 27/10/2020.
-//
 
-//
-//  WeatherManager.swift
-//  Clima
-//
-//  Created by Simon Bachmann Karlsen on 26/10/2020.
-//  Copyright © 2020 App Brewery. All rights reserved.
+
 //
 
 //"https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=59.911166&lon=10.744810"
@@ -19,11 +12,6 @@ import Foundation
 import CoreLocation
 
 //let urlString = "\(weatherURL)lat=\(latitude)&lon=\(longitude)"
-
-protocol WeatherManagerDelegate {
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
-    func didFailWithError(error: Error)
-}
 
 enum WeatherError: Error {
     case noData
@@ -34,7 +22,6 @@ struct WeatherManager {
     let weatherURL: URL
     let urlBase = "https://api.met.no/weatherapi/locationforecast/2.0/compact?"
     
-    var delegate: WeatherManagerDelegate?
     
     init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
 //        print("init")
@@ -54,7 +41,7 @@ struct WeatherManager {
             
             guard let jsonData = data else {
                 completion(.failure(.noData))
-                self.delegate?.didFailWithError(error: error!)
+             
                 return
             }
             do {
@@ -115,13 +102,6 @@ struct WeatherManager {
         }
         dataTask.resume() //start
     }
-    
-    
-//    func fetchData(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-//        // 26:44 -> https://www.youtube.com/watch?v=tdxKIPpPDAI
-//
-//    }
 
-    
 }
 
