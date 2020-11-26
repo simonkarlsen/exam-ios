@@ -22,10 +22,31 @@
                                     <navigationItem title="Kart" id="hcC-Wb-cfg"/>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Oij-MM-Mxk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="518"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xxN-DX-T60">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Oij-MM-Mxk">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="518"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="518" id="N4O-ai-bop"/>
+                                        </constraints>
+                                    </mapView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTr-CP-ib2" customClass="WeatherCustomView" customModule="Exam" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="526" width="414" height="199"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zTr-CP-ib2" secondAttribute="trailing" id="6eO-cb-ARj"/>
+                                    <constraint firstItem="zTr-CP-ib2" firstAttribute="leading" secondItem="xxN-DX-T60" secondAttribute="leading" id="8LX-wo-RkH"/>
+                                    <constraint firstAttribute="bottom" secondItem="zTr-CP-ib2" secondAttribute="bottom" id="B3T-eL-lEM"/>
+                                    <constraint firstItem="Oij-MM-Mxk" firstAttribute="top" secondItem="xxN-DX-T60" secondAttribute="top" id="FyN-BG-g6f"/>
+                                    <constraint firstItem="Oij-MM-Mxk" firstAttribute="leading" secondItem="xxN-DX-T60" secondAttribute="leading" id="KSi-6L-tvj"/>
+                                    <constraint firstItem="zTr-CP-ib2" firstAttribute="top" secondItem="Oij-MM-Mxk" secondAttribute="bottom" constant="8" symbolic="YES" id="L3S-Lr-3vs"/>
+                                    <constraint firstAttribute="trailing" secondItem="Oij-MM-Mxk" secondAttribute="trailing" id="nIP-fs-zxm"/>
+                                    <constraint firstItem="zTr-CP-ib2" firstAttribute="top" secondItem="Oij-MM-Mxk" secondAttribute="bottom" constant="8" symbolic="YES" id="xtS-27-d8n"/>
+                                </constraints>
+                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwf-Ek-wTZ">
                                 <rect key="frame" x="20" y="649" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -46,9 +67,13 @@
                         <viewLayoutGuide key="safeArea" id="mwe-aV-dkG"/>
                         <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                         <constraints>
+                            <constraint firstItem="xxN-DX-T60" firstAttribute="trailing" secondItem="mwe-aV-dkG" secondAttribute="trailing" id="4De-sp-hTe"/>
                             <constraint firstItem="eTm-ad-3GR" firstAttribute="top" secondItem="mwe-aV-dkG" secondAttribute="top" id="75t-ri-7Pd"/>
+                            <constraint firstItem="xxN-DX-T60" firstAttribute="bottom" secondItem="mwe-aV-dkG" secondAttribute="bottom" id="AH2-hF-g4A"/>
                             <constraint firstItem="eTm-ad-3GR" firstAttribute="trailing" secondItem="mwe-aV-dkG" secondAttribute="trailing" id="IbN-9U-lUX"/>
+                            <constraint firstItem="xxN-DX-T60" firstAttribute="top" secondItem="eTm-ad-3GR" secondAttribute="bottom" id="ZVc-1X-wxY"/>
                             <constraint firstItem="eTm-ad-3GR" firstAttribute="leading" secondItem="mwe-aV-dkG" secondAttribute="leading" id="byM-hh-gQv"/>
+                            <constraint firstItem="xxN-DX-T60" firstAttribute="leading" secondItem="mwe-aV-dkG" secondAttribute="leading" id="ehh-WO-gNf"/>
                             <constraint firstItem="mwe-aV-dkG" firstAttribute="bottom" secondItem="eTm-ad-3GR" secondAttribute="bottom" constant="725" id="uyb-o1-Z5T"/>
                         </constraints>
                     </view>
