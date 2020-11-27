@@ -154,18 +154,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qr-Nc-Psx">
-                                <rect key="frame" x="138" y="573" width="139" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="54Y-48-6we"/>
-                                    <constraint firstAttribute="height" constant="70" id="7Tp-0G-lO8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="tertiarySystemBackgroundColor"/>
-                                <color key="highlightedColor" systemColor="secondarySystemBackgroundColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-mz-lH0" userLabel="LocationLabel">
-                                <rect key="frame" x="0.0" y="766" width="386" height="37"/>
+                                <rect key="frame" x="0.0" y="782.5" width="386" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
@@ -174,14 +164,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
                         <constraints>
-                            <constraint firstItem="XaA-mz-lH0" firstAttribute="top" secondItem="0qr-Nc-Psx" secondAttribute="bottom" constant="123" id="0Oj-2I-Yhn"/>
                             <constraint firstAttribute="trailing" secondItem="7Tb-lk-xUO" secondAttribute="trailing" id="176-2E-Fwa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0qr-Nc-Psx" secondAttribute="trailing" constant="137" id="NGA-yx-D8s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="XaA-mz-lH0" secondAttribute="bottom" constant="10" id="OSV-NJ-HWa"/>
                             <constraint firstItem="XaA-mz-lH0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PcA-jE-Ywd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XaA-mz-lH0" secondAttribute="trailing" constant="28" id="RHf-Kp-IAt"/>
-                            <constraint firstItem="0qr-Nc-Psx" firstAttribute="top" secondItem="7Tb-lk-xUO" secondAttribute="bottom" constant="35" id="XPH-J8-tLz"/>
-                            <constraint firstItem="0qr-Nc-Psx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="138" id="bfb-3S-OSi"/>
                             <constraint firstAttribute="bottom" secondItem="7Tb-lk-xUO" secondAttribute="bottom" constant="358" id="eK9-wz-H1Z"/>
                             <constraint firstItem="7Tb-lk-xUO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="q6A-HT-1JQ"/>
                             <constraint firstItem="7Tb-lk-xUO" firstAttribute="top" secondItem="wIk-D6-W3n" secondAttribute="bottom" id="sMK-fS-lfo"/>
@@ -189,7 +175,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Værmelding" id="Q59-BO-GrS"/>
                     <connections>
-                        <outlet property="label" destination="0qr-Nc-Psx" id="yhg-md-oBW"/>
                         <outlet property="locationLabel" destination="XaA-mz-lH0" id="JR3-fy-8ot"/>
                         <outlet property="tableView" destination="7Tb-lk-xUO" id="PgU-CH-sKK"/>
                     </connections>
@@ -200,17 +185,11 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="tertiarySystemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

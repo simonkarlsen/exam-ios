@@ -57,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         super.viewDidLoad()
         
         print("viewDidLoad")
-        NotificationCenter.default.addObserver(self, selector: #selector(didGetNotification(_:)), name: Notification.Name("text"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(didGetNotification(_:)), name: Notification.Name("text"), object: nil)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -68,7 +68,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
             self.showLocation()
         }
         
-        getHK()
+        getData()
     }
     
     
@@ -86,76 +86,23 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         }
     }
     
-    @objc func didGetNotification(_ notification: Notification) {
-        let text = notification.object as! String?
-        label.text = text
-    }
+//    @objc func didGetNotification(_ notification: Notification) {
+//        let text = notification.object as! String?
+//        label.text = text
+//    }
     
     
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear")
-        getHK()
+        getData()
     }
     
-    func getHK() {
-        print("counter:)")
-        print(counter)
-        if counter == 1 {
-            getUserLocationWithCoordinates(latitude: 59.91116, longitude: 10.74481)
-            
-            counter = 0
-        }
-        else {
-            print("Already updated weather for HK")
-//            getCurrentUserLocation(updateLocationAgain: false)
-            if let currentLocation = LocationManager.shared.currentLocation{
-
-                let coordinate = currentLocation.location.coordinate
-
-
-                let lat = coordinate.latitude
-                let lon = coordinate.longitude
-
-                let weatherReq = WeatherManager(latitude: lat, longitude: lon)
-                Items.sharedInstance.myLocationLat = lat
-                Items.sharedInstance.myLocationLon = lon
-                weatherReq.getWeather{[weak self] result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let weatherProps):
-                        self?.listOfWeather.append(contentsOf: weatherProps)
-                        Items.sharedInstance.sharedArray.removeAll()
-                        Items.sharedInstance.sharedArray.append(contentsOf: weatherProps)
-                        self?.sharedArrayList.removeAll()
-                        self?.sharedArrayList.append(contentsOf: weatherProps)
-                        DispatchQueue.main.async {
-                            self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
-
-                            self?.tableView.reloadData()
-                        }
-                    }
-                }
-            }
-            
-        }
-    }
-    
-    
-    public func getCurrentUserLocation(updateLocationAgain: Bool) {
-        if(updateLocationAgain) {
-            LocationManager.shared.startLocationUpdater { () -> ()? in
-                self.showLocation()
-            }
-        }
-        else {
-        
+    fileprivate func getCurrentLocationData() {
         if let currentLocation = LocationManager.shared.currentLocation{
             
             let coordinate = currentLocation.location.coordinate
-            
-            
+        
             let lat = coordinate.latitude
             let lon = coordinate.longitude
             
@@ -180,14 +127,12 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
                 }
             }
         }
-        }
-        LocationManager.shared.stopLocationUpdater()
     }
     
-    public func getUserLocationWithCoordinates(latitude lat: Double, longitude lon: Double) {
-        let weatherReq = WeatherManager(latitude: lat, longitude: lon)
-        Items.sharedInstance.myLocationLat = lon
-        Items.sharedInstance.myLocationLon = lon
+    fileprivate func getHKData() {
+        let weatherReq = WeatherManager(latitude: 59.91116, longitude: 10.74481)
+        Items.sharedInstance.myLocationLat = 59.91116
+        Items.sharedInstance.myLocationLon = 10.74481
         weatherReq.getWeather{[weak self] result in
             switch result {
             case .failure(let error):
@@ -205,7 +150,19 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
             }
         }
     }
-   
+    
+    func getData() {
+        print("counter:")
+        print(counter)
+        if counter == 1 {
+            getHKData()
+            counter = 0
+        }
+        else {
+            print("Already updated weather for HK")
+            getCurrentLocationData()
+        }
+    }
 }
 
 //MARK: - UITableViewDataSource, WeatherManagerDelegate
