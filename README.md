@@ -8,3 +8,7 @@ Swift version:
 
 
 
+Copyright info:
+
+Div bilder fra: https://thenounproject.com/
+(detaljer står under hvert bilde )
