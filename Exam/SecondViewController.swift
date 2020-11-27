@@ -48,5 +48,27 @@ class SecondViewController: UIViewController {
          mapView.showsScale = true
         
       }
+    
+    @IBAction func addPin(sender: UILongPressGestureRecognizer) {
+        
+        let location = sender.location(in: self.mapView)
+//
+        let locationCoordinates = self.mapView.convert(location, toCoordinateFrom: self.mapView)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationCoordinates
+        annotation.title = "Your pin location"
+        
+        let lat: Double = locationCoordinates.latitude
+        let lon: Double = locationCoordinates.longitude
+        
+//        let latToString = String(lat)
+//        let lonToString = String(lon)
+//
+        annotation.subtitle = "\(lat), \(lon)"
+        
+        self.mapView.removeAnnotations(mapView.annotations)
+        self.mapView.addAnnotation(annotation)
+    }
 
 }

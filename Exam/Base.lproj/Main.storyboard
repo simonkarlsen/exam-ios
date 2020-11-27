@@ -33,9 +33,13 @@
                                     </switch>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Oij-MM-Mxk">
                                         <rect key="frame" x="0.0" y="39" width="414" height="518"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="518" id="N4O-ai-bop"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="UGR-vB-Za5" appends="YES" id="GUi-uB-tY9"/>
+                                        </connections>
                                     </mapView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTr-CP-ib2" customClass="WeatherCustomView" customModule="Exam" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="565" width="414" height="160"/>
@@ -95,6 +99,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XQK-jL-tjK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="UGR-vB-Za5">
+                    <connections>
+                        <action selector="addPinWithSender:" destination="Jy8-QG-It5" id="Aqx-MU-0gx"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-39.130434782608695" y="383.70535714285711"/>
         </scene>
