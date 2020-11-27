@@ -12,3 +12,8 @@ Copyright info:
 
 Div bilder fra: https://thenounproject.com/
 (detaljer står under hvert bilde )
+
+
+*   Mapkit crasher når jeg prøver å sende data via en delegate fra første viewcontroller til den andre. 
+
+

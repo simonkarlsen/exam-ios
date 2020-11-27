@@ -53,7 +53,7 @@ class LocationManager: NSObject {
         
     }
     
-    func startLocationUpdater() {
+    func stopLocationUpdater() {
         locationManager.stopUpdatingLocation()
     }
 }

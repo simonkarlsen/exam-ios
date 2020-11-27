@@ -109,7 +109,7 @@ struct WeatherModel {
     
     
     
-    //MARK: - SUMMARY string
+    //MARK: - IMAGESTRING string
     var imageString: String {
         switch condition {
         case "clearsky_day", "clearsky_night", "clearsky_polartwilight":

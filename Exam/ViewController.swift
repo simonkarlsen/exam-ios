@@ -97,15 +97,71 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         print("viewWillAppear")
         getHK()
     }
-
     
     func getHK() {
         print("counter:)")
         print(counter)
         if counter == 1 {
-            let weatherReq = WeatherManager(latitude: 59.91116, longitude: 10.74481)
-            Items.sharedInstance.myLocationLat = 59.91116
-            Items.sharedInstance.myLocationLon = 10.74481
+            getUserLocationWithCoordinates(latitude: 59.91116, longitude: 10.74481)
+            
+            counter = 0
+        }
+        else {
+            print("Already updated weather for HK")
+//            getCurrentUserLocation(updateLocationAgain: false)
+            if let currentLocation = LocationManager.shared.currentLocation{
+
+                let coordinate = currentLocation.location.coordinate
+
+
+                let lat = coordinate.latitude
+                let lon = coordinate.longitude
+
+                let weatherReq = WeatherManager(latitude: lat, longitude: lon)
+                Items.sharedInstance.myLocationLat = lat
+                Items.sharedInstance.myLocationLon = lon
+                weatherReq.getWeather{[weak self] result in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let weatherProps):
+                        self?.listOfWeather.append(contentsOf: weatherProps)
+                        Items.sharedInstance.sharedArray.removeAll()
+                        Items.sharedInstance.sharedArray.append(contentsOf: weatherProps)
+                        self?.sharedArrayList.removeAll()
+                        self?.sharedArrayList.append(contentsOf: weatherProps)
+                        DispatchQueue.main.async {
+                            self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
+
+                            self?.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    
+    public func getCurrentUserLocation(updateLocationAgain: Bool) {
+        if(updateLocationAgain) {
+            LocationManager.shared.startLocationUpdater { () -> ()? in
+                self.showLocation()
+            }
+        }
+        else {
+        
+        if let currentLocation = LocationManager.shared.currentLocation{
+            
+            let coordinate = currentLocation.location.coordinate
+            
+            
+            let lat = coordinate.latitude
+            let lon = coordinate.longitude
+            
+            let weatherReq = WeatherManager(latitude: lat, longitude: lon)
+            Items.sharedInstance.myLocationLat = lat
+            Items.sharedInstance.myLocationLon = lon
             weatherReq.getWeather{[weak self] result in
                 switch result {
                 case .failure(let error):
@@ -117,49 +173,37 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
                     self?.sharedArrayList.removeAll()
                     self?.sharedArrayList.append(contentsOf: weatherProps)
                     DispatchQueue.main.async {
-                        self?.locationLabel.text = "Din lokasjon: HK"
+                        self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
+                        
                         self?.tableView.reloadData()
                     }
                 }
             }
-            counter = 0
         }
-        else {
-            print("Already updated weather for HK")
-            
-            
-            if let currentLocation = LocationManager.shared.currentLocation{
-                
-                let coordinate = currentLocation.location.coordinate
-                
-            
-                let lat = coordinate.latitude
-                let lon = coordinate.longitude
-            
-                let weatherReq = WeatherManager(latitude: lat, longitude: lon)
-                Items.sharedInstance.myLocationLat = lat
-                Items.sharedInstance.myLocationLon = lon
-                weatherReq.getWeather{[weak self] result in
-                switch result {
-                case .failure(let error):
-                        print(error)
-                case .success(let weatherProps):
-                        self?.listOfWeather.append(contentsOf: weatherProps)
-                        Items.sharedInstance.sharedArray.removeAll()
-                        Items.sharedInstance.sharedArray.append(contentsOf: weatherProps)
-                        self?.sharedArrayList.removeAll()
-                        self?.sharedArrayList.append(contentsOf: weatherProps)
-                        DispatchQueue.main.async {
-                            self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
-                            
-                        self?.tableView.reloadData()
-                        }
-                    }
+        }
+        LocationManager.shared.stopLocationUpdater()
+    }
+    
+    public func getUserLocationWithCoordinates(latitude lat: Double, longitude lon: Double) {
+        let weatherReq = WeatherManager(latitude: lat, longitude: lon)
+        Items.sharedInstance.myLocationLat = lon
+        Items.sharedInstance.myLocationLon = lon
+        weatherReq.getWeather{[weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let weatherProps):
+                self?.listOfWeather.append(contentsOf: weatherProps)
+                Items.sharedInstance.sharedArray.removeAll()
+                Items.sharedInstance.sharedArray.append(contentsOf: weatherProps)
+                self?.sharedArrayList.removeAll()
+                self?.sharedArrayList.append(contentsOf: weatherProps)
+                DispatchQueue.main.async {
+                    self?.locationLabel.text = "Din lokasjon: HK"
+                    self?.tableView.reloadData()
                 }
             }
-            
         }
-        
     }
    
 }
