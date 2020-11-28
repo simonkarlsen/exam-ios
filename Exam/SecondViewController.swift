@@ -25,6 +25,8 @@ class SecondViewController: UIViewController {
     
     let vc = ViewController()
     
+    var errorCounter: Int = 0
+    
     
     @IBOutlet weak var customViewContainer: UIView!
     
@@ -118,7 +120,7 @@ class SecondViewController: UIViewController {
             let lonToString = String(lon)
             
             
-            annotation.title = "Your pin location"
+            annotation.title = "Din egendefinerte posisjon"
             annotation.subtitle = "\(latToString), \(lonToString)"
             
             self.mapView.removeAnnotations(mapView.annotations)
@@ -185,6 +187,10 @@ extension SecondViewController {
             switch result {
             case .failure(let error):
                 print(error)
+                self?.errorCounter += 1
+                
+                print("Error counter: ")
+                print(self?.errorCounter as Any)
                 
                 self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
                 
@@ -194,10 +200,16 @@ extension SecondViewController {
                 LocationDataArray.sharedInstance.dataArray.removeAll()
                 LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
                 
+                let lonToString = String(format: "%f", lon)
+                let latToString = String(format: "%f", lat)
+                
+                let latText = "Lat: " + latToString
+                let lonText = "Lon: " + lonToString
+                
                 DispatchQueue.main.async {
-                    self?.weatherCustomView?.lonLabel.text = String(format: "%f", lon)
+                    self?.weatherCustomView?.lonLabel.text = lonText
                     
-                    self?.weatherCustomView?.latLabel.text = String(format: "%f", lat)
+                    self?.weatherCustomView?.latLabel.text = latText
                     
                     self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
                     
@@ -223,7 +235,10 @@ extension SecondViewController {
                 switch result {
                 case .failure(let error):
                     print(error)
+                    self?.errorCounter += 1
                     
+                    print("Error counter: ")
+                    print(self?.errorCounter as Any)
                     
                     self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
                     
@@ -235,12 +250,16 @@ extension SecondViewController {
                     LocationDataArray.sharedInstance.dataArray.removeAll()
                     LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
                     
+                    let lonToString = String(format: "%f", lon)
+                    let latToString = String(format: "%f", lat)
+                    
+                    let latText = "Lat: " + latToString
+                    let lonText = "Lon: " + lonToString
                     
                     DispatchQueue.main.async {
-                        self?.weatherCustomView?.lonLabel.text = String(format: "%f", lon)
+                        self?.weatherCustomView?.lonLabel.text = lonText
                         
-                        self?.weatherCustomView?.latLabel.text = String(format: "%f", lat)
-                        
+                        self?.weatherCustomView?.latLabel.text = latText
                         self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
                         
                         self?.navLabel.text = "Din lokasjon"
