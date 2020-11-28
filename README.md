@@ -15,6 +15,17 @@ Div bilder fra: https://thenounproject.com/
 
 
 
+
+Generelle kommentarer:
+
+* Anbefaler å bruke "dark mode" i simulatoren (Settings -> Developer -> Dark Appearance )
+
+* Layout på iPhone SE og iPod Touch ser ikke helt optimalt ut (heller ikke iPads), men layouten blir i hvert fall tilpasset, selv om det er noe mellomrom mellom views osv (tenker spesielt på kartsiden). 
+    (Her tenker jeg at "Visuelt design blir ikke vektlagt" gjelder, i og med at UI tilpasser seg. Har derfor valgt å ikke bruke så mye tid på dette) 
+
+
+
+
 Kommentarer til oppgave 1:
 *   Antar at man kan hardkode "nå", "neste time", "neste 6 timer", "neste 12 timer".
 

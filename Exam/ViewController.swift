@@ -16,19 +16,10 @@ struct Items {
     var myLocationLon: Double = 0.0
 }
 
-protocol DataDelegate {
-    func printString(string: String)
-    
-}
 
 
-class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
-    func printString(string: String) {
-        print("printing delegate string")
-        print(string)
-    }
-    
-    
+class ViewController: UIViewController, UITableViewDelegate {
+
     var getHKLocaton: Bool = true
     var counter: Int = 1
     
@@ -57,7 +48,8 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         super.viewDidLoad()
         
         print("viewDidLoad")
-        //        NotificationCenter.default.addObserver(self, selector: #selector(didGetNotification(_:)), name: Notification.Name("text"), object: nil)
+        
+        view.backgroundColor = .darkGray
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -86,12 +78,6 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
             
         }
     }
-    
-    //    @objc func didGetNotification(_ notification: Notification) {
-    //        let text = notification.object as! String?
-    //        label.text = text
-    //    }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -193,17 +179,14 @@ extension ViewController: UITableViewDataSource {
         
         let weatherModelList = Items.sharedInstance.sharedArray[indexPath.row]
         
-        let titles = ["Nå", "Neste time", "Neste 6 timer", "Neste 12 timer"]
-        let tempWeather = ["Temperatur", "Vær", "Vær", "Vær"]
+        let titles = ["NÅ", "NESTE TIME", "NESTE 6 TIMER", "NESTE 12 TIMER"]
+        let tempWeather = ["Temperatur:", "Vær:", "Vær:", "Vær:"]
         
         let rain = weatherModelList.rain
         let summary = weatherModelList.summary
         let temperature = weatherModelList.temperature
         let rainUnits = weatherModelList.rainUnits
         let tempUnits = weatherModelList.tempUnits
-        
-        print("rain: \(rain)")
-        print("summary: \(summary)")
         
         customCell.hourTitleLabel.text = titles[indexPath.row]
         customCell.rainAmount.text = rain

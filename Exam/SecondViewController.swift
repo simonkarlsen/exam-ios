@@ -37,14 +37,17 @@ class SecondViewController: UIViewController {
     
     @IBOutlet weak var switchToggle: UISwitch!
     
-    public var completionHandler: ((String?) -> Void)?
+    
+    @IBOutlet weak var navLabel: UILabel!
+    
+//    public var completionHandler: ((String?) -> Void)?
     
     var isSwitchOn: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = .darkGray
         print("viewDidLoad")
         setUpMapView()
         print("after setUpMapView")
@@ -52,6 +55,8 @@ class SecondViewController: UIViewController {
         print("after giveDataToCustomView")
         LocationManager.shared.startLocationUpdater { () -> ()? in
             self.showLocation()
+            
+           
         }
         
         
@@ -76,12 +81,12 @@ class SecondViewController: UIViewController {
         if sender.isOn {
             isSwitchOn = true
             print("sender is on")
-            view.backgroundColor = .darkGray
+            view.backgroundColor = .red
             
         } else {
             isSwitchOn = false
             print("sender is not on")
-            view.backgroundColor = .black
+            view.backgroundColor = .darkGray
             
             getCurrentLocation()
         }
@@ -195,6 +200,8 @@ extension SecondViewController {
                     self?.weatherCustomView?.latLabel.text = String(format: "%f", lat)
                     
                     self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
+                    
+                    self?.navLabel.text = "Egendefinert pos."
                 }
             }
         }
@@ -235,6 +242,8 @@ extension SecondViewController {
                         self?.weatherCustomView?.latLabel.text = String(format: "%f", lat)
                         
                         self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
+                        
+                        self?.navLabel.text = "Din lokasjon"
                     }
                 }
                 
