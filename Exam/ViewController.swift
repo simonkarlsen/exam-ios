@@ -114,12 +114,15 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
                 switch result {
                 case .failure(let error):
                     print(error)
+                    self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen.")
                 case .success(let weatherProps):
                     self?.listOfWeather.append(contentsOf: weatherProps)
                     Items.sharedInstance.sharedArray.removeAll()
                     Items.sharedInstance.sharedArray.append(contentsOf: weatherProps)
                     self?.sharedArrayList.removeAll()
                     self?.sharedArrayList.append(contentsOf: weatherProps)
+                    
+                    // Has to run on main thread. If these instructions run on a background thread, the app will crash
                     DispatchQueue.main.async {
                         self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
                         
@@ -141,6 +144,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
             switch result {
             case .failure(let error):
                 print(error)
+                self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen.")
             case .success(let weatherProps):
                 self?.listOfWeather.append(contentsOf: weatherProps)
                 Items.sharedInstance.sharedArray.removeAll()
@@ -212,6 +216,18 @@ extension ViewController: UITableViewDataSource {
         
     }
     
+}
+
+extension ViewController {
+    func presentAlert(message: String) {
+        DispatchQueue.main.async {
+            let alertToUser = alertService.alertUser(message: message)
+            
+            self.present(alertToUser, animated: true)
+        }
+        
+        return
+    }
 }
 
 

@@ -47,6 +47,7 @@ struct WeatherManager {
             guard let jsonData = data else {
                 completion(.failure(.noData))
                 self.delegate?.didFailWithError(error: error!)
+                
                 return
             }
             do {
@@ -107,13 +108,8 @@ struct WeatherManager {
         }
         dataTask.resume() //start
     }
-    
-    
-//    func fetchData(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-//        // 26:44 -> https://www.youtube.com/watch?v=tdxKIPpPDAI
-//
-//    }
 
-    
 }
+
+
 

@@ -2,6 +2,8 @@ import UIKit
 import MapKit
 import Foundation
 
+let alertService = AlertService()
+
 
 struct LocationData {
     var weather: String
@@ -66,25 +68,7 @@ class SecondViewController: UIViewController {
             weatherCustomView = weatherCustomViewReference
             
         }
-        
-        
-        
-        
-        let weatherDataFromPin = LocationData(weather: Items.sharedInstance.sharedArray[1].imageString, myLocationLat: Items.sharedInstance.myLocationLat, myLocationLon: Items.sharedInstance.myLocationLon)
-        LocationDataArray.sharedInstance.dataArray.removeAll()
-        LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
-        
-        print("LocationDataArray.sharedInstance.dataArray[0].myLocationLat: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLat)")
-        print("LocationDataArray.sharedInstance.dataArray[0].myLocationLon: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLon)")
-        print("LocationDataArray.sharedInstance.dataArray[0].weather: \(LocationDataArray.sharedInstance.dataArray[0].weather)")
-        
-        DispatchQueue.main.async {
-            self.weatherCustomView?.lonLabel.text = String(format: "%f", LocationDataArray.sharedInstance.dataArray[0].myLocationLat)
-            
-            self.weatherCustomView?.latLabel.text = String(format: "%f", LocationDataArray.sharedInstance.dataArray[0].myLocationLon)
-            
-            self.weatherCustomView?.imageView.image = UIImage(named: LocationDataArray.sharedInstance.dataArray[0].weather)
-        }
+        getCurrentLocation()
     }
     
     
@@ -92,8 +76,7 @@ class SecondViewController: UIViewController {
         if sender.isOn {
             isSwitchOn = true
             print("sender is on")
-            view.backgroundColor = .blue
-            
+            view.backgroundColor = .darkGray
             
         } else {
             isSwitchOn = false
@@ -101,8 +84,6 @@ class SecondViewController: UIViewController {
             view.backgroundColor = .black
             
             getCurrentLocation()
-            
-            
         }
     }
     
@@ -144,9 +125,52 @@ class SecondViewController: UIViewController {
             
         } else {
             print("cannot add pin since switch is not on")
+            
+        
+            presentAlert(message: "Trykk på switch toggle i øvre høyre hjørne for å få værmelding på egendefinert posisjon.")
         }
     }
     
+    
+    
+    
+    func showLocation() {
+        print("before if let currentLocation")
+        if let currentLocation = LocationManager.shared.currentLocation{
+            
+            let coordinate = currentLocation.location.coordinate
+            
+            print("showLocation - Latitude: \(coordinate.latitude)")
+            
+            print("showLocation - Longitude: \(coordinate.longitude)")
+            
+        }
+    }
+    
+}
+
+//MARK: - CustomDelegate (for custom view WeatherCustomView)
+extension SecondViewController: CustomDelegate {
+    func giveDataToCustomView(latitudeLabel: String, longitudeLabel: String, imageName: String) {
+        print("latitudeLabel: \(latitudeLabel), longitudeLabel: \(longitudeLabel), imageName: \(imageName)")
+    }
+}
+
+//MARK: - Alert Handler
+extension SecondViewController {
+    func presentAlert(message: String) {
+        DispatchQueue.main.async {
+            let alertToUser = alertService.alertUser(message: message)
+            
+            self.present(alertToUser, animated: true)
+        }
+        
+        return
+    }
+}
+
+//MARK: - Get Data from API
+extension SecondViewController {
     func getDataByCoordinates(latitude lat: Double, longitude lon: Double) {
         print("in getDataByCoordinates")
         let weatherReq = WeatherManager(latitude: lat, longitude: lon)
@@ -156,6 +180,9 @@ class SecondViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print(error)
+                
+                self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
+                
             case .success(let weatherProps):
                 
                 let weatherDataFromPin = LocationData(weather: weatherProps[1].imageString, myLocationLat: lat, myLocationLon: lon)
@@ -189,7 +216,13 @@ class SecondViewController: UIViewController {
                 switch result {
                 case .failure(let error):
                     print(error)
+                    
+                    
+                    self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
+                    
                 case .success(let weatherProps):
+                    
+                    //                    self?.presentAlert(message: "Nettverkskall vellykket!")
                     
                     let weatherDataFromPin = LocationData(weather: weatherProps[1].imageString, myLocationLat: lat, myLocationLon: lon)
                     LocationDataArray.sharedInstance.dataArray.removeAll()
@@ -209,28 +242,4 @@ class SecondViewController: UIViewController {
         }
         
     }
-    
-    
-    func showLocation() {
-        print("before if let currentLocation")
-        if let currentLocation = LocationManager.shared.currentLocation{
-            
-            let coordinate = currentLocation.location.coordinate
-            
-            print("showLocation - Latitude: \(coordinate.latitude)")
-            
-            print("showLocation - Longitude: \(coordinate.longitude)")
-            
-        }
-    }
-    
-}
-
-
-extension SecondViewController: CustomDelegate {
-    func giveDataToCustomView(latitudeLabel: String, longitudeLabel: String, imageName: String) {
-        print("latitudeLabel: \(latitudeLabel), longitudeLabel: \(longitudeLabel), imageName: \(imageName)")
-    }
-    
-    
 }
