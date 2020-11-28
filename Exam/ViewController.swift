@@ -63,6 +63,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         
         tableView.register(WeatherTableViewCell.nib(), forCellReuseIdentifier: WeatherTableViewCell.identifier)
         
+        tableView.tableFooterView = UIView()
         
         LocationManager.shared.startLocationUpdater { () -> ()? in
             self.showLocation()
