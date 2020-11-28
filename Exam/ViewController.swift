@@ -28,21 +28,21 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         print(string)
     }
     
-
+    
     var getHKLocaton: Bool = true
     var counter: Int = 1
     
     var sharedArrayList = Items.sharedInstance.sharedArray
-//    {
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-//    }
+    //    {
+    //        didSet {
+    //            DispatchQueue.main.async {
+    //                self.tableView.reloadData()
+    //            }
+    //        }
+    //    }
     
     var listOfWeather = [WeatherModel]()
-
+    
     
     var listOfWeatherProperties = [WeatherResponse]()
     
@@ -57,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         super.viewDidLoad()
         
         print("viewDidLoad")
-//        NotificationCenter.default.addObserver(self, selector: #selector(didGetNotification(_:)), name: Notification.Name("text"), object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(didGetNotification(_:)), name: Notification.Name("text"), object: nil)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -78,7 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         if let currentLocation = LocationManager.shared.currentLocation{
             
             let coordinate = currentLocation.location.coordinate
-           
+            
             print("showLocation - Latitude: \(coordinate.latitude)")
             
             print("showLocation - Longitude: \(coordinate.longitude)")
@@ -86,10 +86,10 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
         }
     }
     
-//    @objc func didGetNotification(_ notification: Notification) {
-//        let text = notification.object as! String?
-//        label.text = text
-//    }
+    //    @objc func didGetNotification(_ notification: Notification) {
+    //        let text = notification.object as! String?
+    //        label.text = text
+    //    }
     
     
     
@@ -99,10 +99,11 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
     }
     
     fileprivate func getCurrentLocationData() {
+        
         if let currentLocation = LocationManager.shared.currentLocation{
             
             let coordinate = currentLocation.location.coordinate
-        
+            
             let lat = coordinate.latitude
             let lon = coordinate.longitude
             
@@ -123,13 +124,16 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
                         self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
                         
                         self?.tableView.reloadData()
+                        
                     }
                 }
             }
         }
     }
     
+    
     fileprivate func getHKData() {
+        
         let weatherReq = WeatherManager(latitude: 59.91116, longitude: 10.74481)
         Items.sharedInstance.myLocationLat = 59.91116
         Items.sharedInstance.myLocationLon = 10.74481
@@ -146,9 +150,11 @@ class ViewController: UIViewController, UITableViewDelegate, DataDelegate {
                 DispatchQueue.main.async {
                     self?.locationLabel.text = "Din lokasjon: HK"
                     self?.tableView.reloadData()
+                    
                 }
             }
         }
+        
     }
     
     func getData() {
@@ -177,11 +183,11 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-      
+        
         let customCell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as! WeatherTableViewCell
         
         let weatherModelList = Items.sharedInstance.sharedArray[indexPath.row]
-
+        
         let titles = ["Nå", "Neste time", "Neste 6 timer", "Neste 12 timer"]
         let tempWeather = ["Temperatur", "Vær", "Vær", "Vær"]
         
@@ -201,15 +207,15 @@ extension ViewController: UITableViewDataSource {
         customCell.temp.text = temperature
         customCell.rainUnit.text = rainUnits
         customCell.tempUnit.text = tempUnits
-
+        
         return customCell
-
+        
     }
     
 }
 
 
-    
+
 
 
 

@@ -18,11 +18,17 @@ struct LocationDataArray {
 class SecondViewController: UIViewController {
     let locManager = CLLocationManager()
     let annotation = MKPointAnnotation()
-
+    
     var customDelegate: CustomDelegate?
-    var customView: WeatherCustomView?
+    
     let vc = ViewController()
-
+    
+    
+    @IBOutlet weak var customViewContainer: UIView!
+    
+    var weatherCustomView: WeatherCustomView!
+    
+    
     @IBOutlet weak var latitudeLabel: UILabel!
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet private var mapView: MKMapView!
@@ -40,11 +46,29 @@ class SecondViewController: UIViewController {
         print("viewDidLoad")
         setUpMapView()
         print("after setUpMapView")
-      
+        
         print("after giveDataToCustomView")
         LocationManager.shared.startLocationUpdater { () -> ()? in
             self.showLocation()
         }
+        
+        
+        if let weatherCustomViewReference = Bundle.main.loadNibNamed("WeatherCustomView", owner: self, options: nil)?.first as? WeatherCustomView {
+            
+            customViewContainer.addSubview(weatherCustomViewReference)
+            
+            weatherCustomViewReference.frame.size.height = customViewContainer.frame.size.height
+            
+            weatherCustomViewReference.frame.size.width = customViewContainer.frame.size.width
+            
+            weatherCustomViewReference.customDelegate = self
+            
+            weatherCustomView = weatherCustomViewReference
+            
+        }
+        
+        
+        
         
         let weatherDataFromPin = LocationData(weather: Items.sharedInstance.sharedArray[1].imageString, myLocationLat: Items.sharedInstance.myLocationLat, myLocationLon: Items.sharedInstance.myLocationLon)
         LocationDataArray.sharedInstance.dataArray.removeAll()
@@ -53,6 +77,14 @@ class SecondViewController: UIViewController {
         print("LocationDataArray.sharedInstance.dataArray[0].myLocationLat: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLat)")
         print("LocationDataArray.sharedInstance.dataArray[0].myLocationLon: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLon)")
         print("LocationDataArray.sharedInstance.dataArray[0].weather: \(LocationDataArray.sharedInstance.dataArray[0].weather)")
+        
+        DispatchQueue.main.async {
+            self.weatherCustomView?.lonLabel.text = String(format: "%f", LocationDataArray.sharedInstance.dataArray[0].myLocationLat)
+            
+            self.weatherCustomView?.latLabel.text = String(format: "%f", LocationDataArray.sharedInstance.dataArray[0].myLocationLon)
+            
+            self.weatherCustomView?.imageView.image = UIImage(named: LocationDataArray.sharedInstance.dataArray[0].weather)
+        }
     }
     
     
@@ -61,7 +93,7 @@ class SecondViewController: UIViewController {
             isSwitchOn = true
             print("sender is on")
             view.backgroundColor = .blue
-            customDelegate?.giveDataToCustomView("I present you this data, good sir: Sender is on")
+            
             
         } else {
             isSwitchOn = false
@@ -71,46 +103,44 @@ class SecondViewController: UIViewController {
             getCurrentLocation()
             
             
-            
-            customDelegate?.giveDataToCustomView("I present you this data, good sir: Sender is off")
         }
     }
-
+    
     func setUpMapView() {
-         mapView.showsUserLocation = true
-         mapView.showsCompass = true
-         mapView.showsScale = true
+        mapView.showsUserLocation = true
+        mapView.showsCompass = true
+        mapView.showsScale = true
         
-      }
+    }
     
     @IBAction func addPin(sender: UILongPressGestureRecognizer) {
         
         if isSwitchOn == true {
-        
-        let location = sender.location(in: self.mapView)
-//
-        let locationCoordinates = self.mapView.convert(location, toCoordinateFrom: self.mapView)
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = locationCoordinates
-       
-        
-        let lat: Double = locationCoordinates.latitude
-        let lon: Double = locationCoordinates.longitude
-        
-        let latToString = String(lat)
-        let lonToString = String(lon)
-        
-        
-        annotation.title = "Your pin location"
-        annotation.subtitle = "\(latToString), \(lonToString)"
-        
-        self.mapView.removeAnnotations(mapView.annotations)
-        self.mapView.addAnnotation(annotation)
             
-//        vc.getUserLocationWithCoordinates(latitude: lat, longitude: lon)
+            let location = sender.location(in: self.mapView)
+            //
+            let locationCoordinates = self.mapView.convert(location, toCoordinateFrom: self.mapView)
             
-        getDataByCoordinates(latitude: lat, longitude: lon)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = locationCoordinates
+            
+            
+            let lat: Double = locationCoordinates.latitude
+            let lon: Double = locationCoordinates.longitude
+            
+            let latToString = String(lat)
+            let lonToString = String(lon)
+            
+            
+            annotation.title = "Your pin location"
+            annotation.subtitle = "\(latToString), \(lonToString)"
+            
+            self.mapView.removeAnnotations(mapView.annotations)
+            self.mapView.addAnnotation(annotation)
+            
+            //        vc.getUserLocationWithCoordinates(latitude: lat, longitude: lon)
+            
+            getDataByCoordinates(latitude: lat, longitude: lon)
             
         } else {
             print("cannot add pin since switch is not on")
@@ -127,22 +157,20 @@ class SecondViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let weatherProps):
-//                MapPinData.sharedInstance.myLocationLat = lat
-//                MapPinData.sharedInstance.myLocationLon = lon
-//                MapPinData.sharedInstance.weather = weatherProps[1].imageString
+                
                 let weatherDataFromPin = LocationData(weather: weatherProps[1].imageString, myLocationLat: lat, myLocationLon: lon)
                 LocationDataArray.sharedInstance.dataArray.removeAll()
                 LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
                 
-                
-                self?.customView?.latLabel.text = String(lat)
-                self?.customView?.lonLabel.text = String(lon)
-                self?.customView?.imageView.image = UIImage(named: weatherProps[1].imageString)
+                DispatchQueue.main.async {
+                    self?.weatherCustomView?.lonLabel.text = String(format: "%f", lon)
+                    
+                    self?.weatherCustomView?.latLabel.text = String(format: "%f", lat)
+                    
+                    self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
+                }
             }
         }
-//        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].myLocationLat: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLat)")
-//        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].myLocationLon: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLon)")
-//        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].weather: \(LocationDataArray.sharedInstance.dataArray[0].weather)")
     }
     
     fileprivate func getCurrentLocation() {
@@ -168,18 +196,18 @@ class SecondViewController: UIViewController {
                     LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
                     
                     
-                    self?.customView?.latLabel.text = String(lat)
-                    self?.customView?.lonLabel.text = String(lon)
-                    self?.customView?.imageView.image = UIImage(named: weatherProps[1].imageString)
+                    DispatchQueue.main.async {
+                        self?.weatherCustomView?.lonLabel.text = String(format: "%f", lon)
+                        
+                        self?.weatherCustomView?.latLabel.text = String(format: "%f", lat)
+                        
+                        self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
+                    }
                 }
                 
             }
         }
-//        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].myLocationLat: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLat)")
-//        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].myLocationLon: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLon)")
-//        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].weather: \(LocationDataArray.sharedInstance.dataArray[0].weather)")
-    
-//        LocationManager.shared.stopLocationUpdater()
+        
     }
     
     
@@ -188,12 +216,21 @@ class SecondViewController: UIViewController {
         if let currentLocation = LocationManager.shared.currentLocation{
             
             let coordinate = currentLocation.location.coordinate
-           
+            
             print("showLocation - Latitude: \(coordinate.latitude)")
             
             print("showLocation - Longitude: \(coordinate.longitude)")
             
         }
     }
+    
+}
 
+
+extension SecondViewController: CustomDelegate {
+    func giveDataToCustomView(latitudeLabel: String, longitudeLabel: String, imageName: String) {
+        print("latitudeLabel: \(latitudeLabel), longitudeLabel: \(longitudeLabel), imageName: \(imageName)")
+    }
+    
+    
 }
