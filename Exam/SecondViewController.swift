@@ -133,6 +133,11 @@ class SecondViewController: UIViewController {
                 let weatherDataFromPin = LocationData(weather: weatherProps[1].imageString, myLocationLat: lat, myLocationLon: lon)
                 LocationDataArray.sharedInstance.dataArray.removeAll()
                 LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
+                
+                
+                self?.customView?.latLabel.text = String(lat)
+                self?.customView?.lonLabel.text = String(lon)
+                self?.customView?.imageView.image = UIImage(named: weatherProps[1].imageString)
             }
         }
 //        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].myLocationLat: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLat)")
@@ -161,7 +166,13 @@ class SecondViewController: UIViewController {
                     let weatherDataFromPin = LocationData(weather: weatherProps[1].imageString, myLocationLat: lat, myLocationLon: lon)
                     LocationDataArray.sharedInstance.dataArray.removeAll()
                     LocationDataArray.sharedInstance.dataArray.append(weatherDataFromPin)
+                    
+                    
+                    self?.customView?.latLabel.text = String(lat)
+                    self?.customView?.lonLabel.text = String(lon)
+                    self?.customView?.imageView.image = UIImage(named: weatherProps[1].imageString)
                 }
+                
             }
         }
 //        print("getDataByCoordinates: LocationDataArray.sharedInstance.dataArray[0].myLocationLat: \(LocationDataArray.sharedInstance.dataArray[0].myLocationLat)")
