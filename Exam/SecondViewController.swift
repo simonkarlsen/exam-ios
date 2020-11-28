@@ -125,9 +125,7 @@ class SecondViewController: UIViewController {
             
             self.mapView.removeAnnotations(mapView.annotations)
             self.mapView.addAnnotation(annotation)
-            
-            //        vc.getUserLocationWithCoordinates(latitude: lat, longitude: lon)
-            
+   
             getDataByCoordinates(latitude: lat, longitude: lon)
             
         } else {
