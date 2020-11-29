@@ -29,6 +29,9 @@ Generelle kommentarer:
 Kommentarer til oppgave 1:
 *   Antar at man kan hardkode "nå", "neste time", "neste 6 timer", "neste 12 timer".
 
+* (Bug: )Label "Din lokasjon" vil ikke oppdatere til faktisk lokasjon rett etter at man har gitt tilgang til lokasjonen sin. Man må gå til kartsiden og så tilbake igjen før den oppdaterer seg. Om man har gitt tilgang, og så starter appen på nytt, vil "Din lokasjon" faktisk vise din lokasjon. 
+
+
 
 Kommentarer til oppgave 2:
 

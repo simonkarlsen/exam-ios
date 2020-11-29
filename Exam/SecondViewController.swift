@@ -49,7 +49,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemGray4
         print("viewDidLoad")
         setUpMapView()
         print("after setUpMapView")
@@ -83,12 +83,12 @@ class SecondViewController: UIViewController {
         if sender.isOn {
             isSwitchOn = true
             print("sender is on")
-            view.backgroundColor = .red
+            view.backgroundColor = .systemGray
             
         } else {
             isSwitchOn = false
             print("sender is not on")
-            view.backgroundColor = .darkGray
+            view.backgroundColor = .systemGray4
             
             getCurrentLocation()
         }
@@ -212,6 +212,7 @@ extension SecondViewController {
                     self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
                     
                     self?.navLabel.text = "Egendefinert pos."
+                    self?.navLabel.textColor = .systemRed
                 }
             }
         }
@@ -261,6 +262,7 @@ extension SecondViewController {
                         self?.weatherCustomView?.imageView.image = UIImage(named: weatherProps[1].imageString)
                         
                         self?.navLabel.text = "Din lokasjon"
+                        self?.navLabel.textColor = .white
                     }
                 }
                 

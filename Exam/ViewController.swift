@@ -19,7 +19,7 @@ struct Items {
 
 
 class ViewController: UIViewController, UITableViewDelegate {
-
+    
     var getHKLocaton: Bool = true
     var counter: Int = 1
     
@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITableViewDelegate {
         
         print("viewDidLoad")
         
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemGray4
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -80,12 +80,17 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
         getData()
     }
     
-    fileprivate func getCurrentLocationData() {
+    func getCurrentLocationData() {
+        
+        print("getCurrentLocationData")
         
         if let currentLocation = LocationManager.shared.currentLocation{
             
@@ -113,6 +118,8 @@ class ViewController: UIViewController, UITableViewDelegate {
                     DispatchQueue.main.async {
                         self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
                         
+                        print("self?.locationLabel.text: \(self?.locationLabel.text)")
+                        
                         self?.tableView.reloadData()
                         
                     }
@@ -122,7 +129,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    fileprivate func getHKData() {
+    func getHKData() {
         
         let weatherReq = WeatherManager(latitude: 59.91116, longitude: 10.74481)
         Items.sharedInstance.myLocationLat = 59.91116
@@ -149,17 +156,26 @@ class ViewController: UIViewController, UITableViewDelegate {
     }
     
     func getData() {
-        print("counter:")
-        print(counter)
-        if counter == 1 {
-            getHKData()
-            counter = 0
-        }
-        else {
-            print("Already updated weather for HK")
+        if ((LocationManager.shared.currentLocation?.location.coordinate) != nil) {
+            print("getData: getCurrentLocationData")
+            LocationManager.shared.startLocationUpdater { () -> ()? in
+                self.showLocation()
+            }
             getCurrentLocationData()
+        } else {
+            print("getData: getHKData")
+            getHKData()
+            LocationManager.shared.startLocationUpdater { () -> ()? in
+                self.showLocation()
+            }
+            
         }
+        
     }
+    
+    
+    
+    
 }
 
 //MARK: - UITableViewDataSource, WeatherManagerDelegate

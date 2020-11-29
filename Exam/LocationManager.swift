@@ -8,11 +8,13 @@
 import Foundation
 import CoreLocation
 
+
 struct LocationAddress {
     var location: CLLocation
     var city: String?
     var country: String?
     var address: String?
+    
     
     init(location: CLLocation) {
         self.location = location
@@ -28,7 +30,11 @@ class LocationManager: NSObject {
     
     var locationUpdated: handler?
     
+    let alertService = AlertService()
+    
     var currentLocation: LocationAddress?
+    
+    let vc = ViewController()
     
     
     private var locationManager: CLLocationManager = {
@@ -74,6 +80,45 @@ extension LocationManager: CLLocationManagerDelegate {
                 update()
             }
         }
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         
+        print("locationManagerDidChangeAuthorization")
+        
+        LocationManager.shared.startLocationUpdater { () -> ()? in
+            self.showLocation()
+        }
+        
+        vc.getCurrentLocationData()
+        print("vc.getCurrentLocationData()")
+    }
+}
+
+//MARK: - Alert Handler
+extension LocationManager {
+    func presentAlert(message: String) {
+        DispatchQueue.main.async {
+            let alertToUser = self.alertService.alertUser(message: message)
+            
+            self.vc.present(alertToUser, animated: true)
+        }
+        
+        return
+    }
+}
+
+extension LocationManager {
+    func showLocation() {
+        print("before if let currentLocation")
+        if let currentLocation = LocationManager.shared.currentLocation{
+            
+            let coordinate = currentLocation.location.coordinate
+            
+            print("showLocation - Latitude: \(coordinate.latitude)")
+            
+            print("showLocation - Longitude: \(coordinate.longitude)")
+            
+        }
     }
 }
