@@ -39,6 +39,9 @@ Kommentarer til oppgave 2:
 Kommentarer til oppgave 3:
 * Når man trykker på switch for å få værmelding på egendefinert pin, og så toggler switch tilbake til værmelding for posisjon, og deretter tilbake igjen til egendefinert pin, må man lage en ny pin for å få oppdatert data. 
 
+* Må bruke long press for å sette pin
+
+
 Kommentarer til oppgave 4:
 
-
+* 
