@@ -14,6 +14,7 @@ struct Items {
     
     var myLocationLat: Double = 0.0
     var myLocationLon: Double = 0.0
+    var imageName: String = ""
 }
 
 
@@ -21,7 +22,7 @@ struct Items {
 
 
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ForecastController: UIViewController, UITableViewDelegate {
     
     var getHKLocaton: Bool = true
     var counter: Int = 1
@@ -105,6 +106,7 @@ class ViewController: UIViewController, UITableViewDelegate {
             let weatherReq = WeatherManager(latitude: lat, longitude: lon)
             Items.sharedInstance.myLocationLat = lat
             Items.sharedInstance.myLocationLon = lon
+           
             weatherReq.getWeather{[weak self] result in
                 switch result {
                 case .failure(let error):
@@ -116,6 +118,7 @@ class ViewController: UIViewController, UITableViewDelegate {
                     Items.sharedInstance.sharedArray.append(contentsOf: weatherProps)
                     self?.sharedArrayList.removeAll()
                     self?.sharedArrayList.append(contentsOf: weatherProps)
+                    
                     
                     // Has to run on main thread. If these instructions run on a background thread, the app will crash
                     DispatchQueue.main.async {
@@ -151,6 +154,7 @@ class ViewController: UIViewController, UITableViewDelegate {
                 DispatchQueue.main.async {
                     self?.locationLabel.text = "Din lokasjon: HK"
                     self?.tableView.reloadData()
+                    Items.sharedInstance.imageName = weatherProps[1].imageString
                     
                 }
             }
@@ -182,7 +186,7 @@ class ViewController: UIViewController, UITableViewDelegate {
 }
 
 //MARK: - UITableViewDataSource, WeatherManagerDelegate
-extension ViewController: UITableViewDataSource {
+extension ForecastController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -221,7 +225,7 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-extension ViewController {
+extension ForecastController {
     func presentAlert(message: String) {
         DispatchQueue.main.async {
             let alertToUser = alertService.alertUser(message: message)

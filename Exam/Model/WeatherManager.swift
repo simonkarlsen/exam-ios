@@ -22,6 +22,8 @@ enum WeatherError: Error {
     case processError
 }
 
+
+
 struct WeatherManager {
     let weatherURL: URL
     let urlBase = "https://api.met.no/weatherapi/locationforecast/2.0/compact?"
@@ -103,6 +105,7 @@ struct WeatherManager {
             catch {
                 completion(.failure(.processError))
                 print("failure")
+               
             }
             
         }
@@ -110,6 +113,9 @@ struct WeatherManager {
     }
 
 }
+
+
+
 
 
 

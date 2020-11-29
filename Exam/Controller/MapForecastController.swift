@@ -190,7 +190,7 @@ extension MapForecastController {
                 print("Error counter: ")
                 print(self?.errorCounter as Any)
                 
-                self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
+                self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Påse at du har gitt tilgang til posisjon. Dette kan gjøres i instillinger. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
                 
             case .success(let weatherProps):
                 
@@ -239,7 +239,7 @@ extension MapForecastController {
                     print("Error counter: ")
                     print(self?.errorCounter as Any)
                     
-                    self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
+                    self?.presentAlert(message: "Nettverkskall feilet. Kunne ikke hente data for denne posisjonen. Påse at du har gitt tilgang til posisjon. Dette kan gjøres i instillinger. Prøv igjen med en annen posisjon, sjekk internett, eller restart appen")
                     
                 case .success(let weatherProps):
                     
@@ -266,6 +266,29 @@ extension MapForecastController {
                     }
                 }
                 
+            }
+        } else {
+            DispatchQueue.main.async {
+                
+                let lon = Items.sharedInstance.myLocationLon
+                let lat = Items.sharedInstance.myLocationLat
+                let imageName = Items.sharedInstance.imageName
+                print("imageName for HK: ")
+                print(imageName)
+                
+                let lonToString = String(format: "%f", lon)
+                let latToString = String(format: "%f", lat)
+                
+                let latText = "Lat: " + latToString
+                let lonText = "Lon: " + lonToString
+                
+                self.weatherCustomView?.lonLabel.text = lonText
+                
+                self.weatherCustomView?.latLabel.text = latText
+                self.weatherCustomView?.imageView.image = UIImage(named: imageName)
+                
+                self.navLabel.text = "HK"
+                self.navLabel.textColor = .white
             }
         }
         

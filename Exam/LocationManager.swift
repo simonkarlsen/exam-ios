@@ -34,7 +34,7 @@ class LocationManager: NSObject {
     
     var currentLocation: LocationAddress?
     
-    let vc = ViewController()
+    let vc = ForecastController()
     
     
     private var locationManager: CLLocationManager = {

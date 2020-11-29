@@ -24,17 +24,17 @@ Generelle kommentarer:
     (Her tenker jeg at "Visuelt design blir ikke vektlagt" gjelder, i og med at UI tilpasser seg. Har derfor valgt å ikke bruke så mye tid på dette) 
 
 
-
+---
 
 Kommentarer til oppgave 1:
 *   Antar at man kan hardkode "nå", "neste time", "neste 6 timer", "neste 12 timer".
 
-* (Bug: )Label "Din lokasjon" vil ikke oppdatere til faktisk lokasjon rett etter at man har gitt tilgang til lokasjonen sin. Man må gå til kartsiden og så tilbake igjen før den oppdaterer seg. Om man har gitt tilgang, og så starter appen på nytt, vil "Din lokasjon" faktisk vise din lokasjon. 
-
-
+---
 
 Kommentarer til oppgave 2:
 
+
+---
 
 Kommentarer til oppgave 3:
 * Når man trykker på switch for å få værmelding på egendefinert pin, og så toggler switch tilbake til værmelding for posisjon, og deretter tilbake igjen til egendefinert pin, må man lage en ny pin for å få oppdatert data. 
