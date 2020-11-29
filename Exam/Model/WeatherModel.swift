@@ -123,7 +123,7 @@ struct WeatherModel {
         case    "lightsnowshowers_day", "lightsnowshowers_night", "lightsnowshowers_polartwilight":
             return "some_snow" //some_snow.png
         case   "heavyrainandthunder", "heavysnowandthunder":
-            return "kraftig regn og torden" // heavy_rain_thunder.png
+            return "heavy_rain_thunder" // heavy_rain_thunder.png
         case "rainandthunder":
             return "rain_thunder" // rain_thunder.png
         case "heavysleetshowersandthunder_day", "heavysleetshowersandthunder_night", "heavysleetshowersandthunder_polartwilight":
