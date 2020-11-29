@@ -8,6 +8,31 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Item-->
+        <scene sceneID="QzU-fo-xWq">
+            <objects>
+                <viewController id="Ylf-ny-yJn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rZj-mT-8zG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Yoooo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2CN-kP-Hcr">
+                                <rect key="frame" x="186" y="305" width="48" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mbh-ze-9c5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="pAg-vc-L0w"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5H-Vo-1uX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-929" y="913"/>
+        </scene>
         <!--Kart-->
         <scene sceneID="WzP-Do-w6T">
             <objects>
@@ -100,6 +125,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="Ylf-ny-yJn" kind="relationship" relationship="viewControllers" id="w9L-Ct-qcM"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="aD4-Lu-6vI"/>
                         <segue destination="Jy8-QG-It5" kind="relationship" relationship="viewControllers" id="B4B-CT-wwa"/>
                     </connections>

@@ -17,6 +17,9 @@ struct Items {
 }
 
 
+// TODO: add home screen
+
+
 
 class ViewController: UIViewController, UITableViewDelegate {
     
