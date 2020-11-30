@@ -26,8 +26,8 @@
 		74BDA45B25742FC400090502 /* exam_data_model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74BDA45925742FC400090502 /* exam_data_model.xcdatamodeld */; };
 		74BDA464257431C100090502 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDA462257431C100090502 /* Entity+CoreDataClass.swift */; };
 		74BDA465257431C100090502 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDA463257431C100090502 /* Entity+CoreDataProperties.swift */; };
+		74BDA49F2574819E00090502 /* WeatherCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BDA49E2574819E00090502 /* WeatherCustomView.swift */; };
 		74D2A86E256D2BB100994520 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2A86D256D2BB100994520 /* LocationManager.swift */; };
-		74E3B5322570415A00C8A0BE /* WeatherCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */; };
 		74E3B53F2570448E00C8A0BE /* WeatherCustomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */; };
 		74E3B5442570483800C8A0BE /* MapForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E3B5432570483800C8A0BE /* MapForecastController.swift */; };
 /* End PBXBuildFile section */
@@ -75,8 +75,8 @@
 		74BDA45A25742FC400090502 /* exam_data_mode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = exam_data_mode.xcdatamodel; sourceTree = "<group>"; };
 		74BDA462257431C100090502 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		74BDA463257431C100090502 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		74BDA49E2574819E00090502 /* WeatherCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCustomView.swift; sourceTree = "<group>"; };
 		74D2A86D256D2BB100994520 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherCustomView.swift; path = "../../exam-ios_copy2_notworking/WeatherCustomView.swift"; sourceTree = "<group>"; };
 		74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCustomView.xib; sourceTree = "<group>"; };
 		74E3B5432570483800C8A0BE /* MapForecastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapForecastController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,7 +141,7 @@
 				7488CF3925479D7B001A5ED6 /* WeatherTableViewCell.swift */,
 				7488CF3A25479D7B001A5ED6 /* WeatherTableViewCell.xib */,
 				74D2A86D256D2BB100994520 /* LocationManager.swift */,
-				74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */,
+				74BDA49E2574819E00090502 /* WeatherCustomView.swift */,
 				74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */,
 				74BDA4362572E4A300090502 /* AlertService.swift */,
 			);
@@ -343,9 +343,9 @@
 				7488CF3B25479D7B001A5ED6 /* WeatherTableViewCell.swift in Sources */,
 				7488CEFC25478531001A5ED6 /* ForecastController.swift in Sources */,
 				7488CF462548A473001A5ED6 /* WeatherManager.swift in Sources */,
-				74E3B5322570415A00C8A0BE /* WeatherCustomView.swift in Sources */,
 				7488CF412548A129001A5ED6 /* WeatherModel.swift in Sources */,
 				7488CEF825478531001A5ED6 /* AppDelegate.swift in Sources */,
+				74BDA49F2574819E00090502 /* WeatherCustomView.swift in Sources */,
 				74BDA464257431C100090502 /* Entity+CoreDataClass.swift in Sources */,
 				7488CEFA25478531001A5ED6 /* SceneDelegate.swift in Sources */,
 				74BDA45B25742FC400090502 /* exam_data_model.xcdatamodeld in Sources */,
