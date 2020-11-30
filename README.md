@@ -1,4 +1,4 @@
-# exam-ios
+# PG5601-eksamen
 
 Xcode version:
     - Version 12.0 (12A7209)
@@ -33,15 +33,20 @@ Kommentarer til oppgave 1:
 
 Kommentarer til oppgave 2:
 
+* Table view kan scrolles dersom ikke all data vises på enheter med små skjermer. 
 
 ---
 
 Kommentarer til oppgave 3:
 * Når man trykker på switch for å få værmelding på egendefinert pin, og så toggler switch tilbake til værmelding for posisjon, og deretter tilbake igjen til egendefinert pin, må man lage en ny pin for å få oppdatert data. 
 
-* Må bruke long press for å sette pin
+* Må bruke long press for å sette pin (på Mac er dette control + klikk)
 
 
 Kommentarer til oppgave 4:
 
-* 
+* Skrift og bilde på skjermen oppdateres ikke etter at man har gitt tilgang til posisjon (har ikke fått ordnet det), så man må gå til neste side og så tilbake igjen til Hjem-siden. 
+
+-----
+
+Oppgave 5 er ikke gjort. 

@@ -129,9 +129,7 @@
 		7488CEF625478531001A5ED6 /* Exam */ = {
 			isa = PBXGroup;
 			children = (
-				74BDA462257431C100090502 /* Entity+CoreDataClass.swift */,
-				74BDA463257431C100090502 /* Entity+CoreDataProperties.swift */,
-				74BDA45925742FC400090502 /* exam_data_model.xcdatamodeld */,
+				74BDA48C2574780800090502 /* Persistance */,
 				74BDA4502573EA4500090502 /* View */,
 				74BDA4492573E89900090502 /* Controller */,
 				7488CF2A25478549001A5ED6 /* Model */,
@@ -146,7 +144,6 @@
 				74E3B5312570415A00C8A0BE /* WeatherCustomView.swift */,
 				74E3B53E2570448E00C8A0BE /* WeatherCustomView.xib */,
 				74BDA4362572E4A300090502 /* AlertService.swift */,
-				74BDA4542574251F00090502 /* Persistance.swift */,
 			);
 			path = Exam;
 			sourceTree = "<group>";
@@ -195,6 +192,17 @@
 				7488CEFD25478531001A5ED6 /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		74BDA48C2574780800090502 /* Persistance */ = {
+			isa = PBXGroup;
+			children = (
+				74BDA4542574251F00090502 /* Persistance.swift */,
+				74BDA462257431C100090502 /* Entity+CoreDataClass.swift */,
+				74BDA463257431C100090502 /* Entity+CoreDataProperties.swift */,
+				74BDA45925742FC400090502 /* exam_data_model.xcdatamodeld */,
+			);
+			path = Persistance;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

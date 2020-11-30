@@ -158,7 +158,7 @@ extension HomeForecastController {
             }
         } else {
             
-            self.dayLabel.text = "Gi tilgang i instillinger"
+            self.imageView.image = UIImage(named: "gi_tilgang")
             
             // kind of a workaround since location will not update after giving access to position
             self.descLabelOne.text = "Gitt tilgang? Gå til"
