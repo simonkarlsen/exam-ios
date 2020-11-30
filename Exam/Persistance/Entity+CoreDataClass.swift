@@ -2,7 +2,7 @@
 //  Entity+CoreDataClass.swift
 //  Exam
 //
-//  Created by Simon Bachmann Karlsen on 29/11/2020.
+//  
 //
 //
 

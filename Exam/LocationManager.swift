@@ -64,6 +64,7 @@ class LocationManager: NSObject {
     }
 }
 
+//MARK: - CLLocationManagerDelegate
 extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -108,6 +109,7 @@ extension LocationManager {
     }
 }
 
+// just printing
 extension LocationManager {
     func showLocation() {
         print("before if let currentLocation")

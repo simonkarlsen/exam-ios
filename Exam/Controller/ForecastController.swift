@@ -18,10 +18,6 @@ struct Items {
 }
 
 
-// TODO: add home screen
-
-
-
 class ForecastController: UIViewController, UITableViewDelegate {
     
     var getHKLocaton: Bool = true
@@ -69,7 +65,7 @@ class ForecastController: UIViewController, UITableViewDelegate {
     }
     
     
-    
+//    just printing
     func showLocation() {
         print("before if let currentLocation")
         if let currentLocation = LocationManager.shared.currentLocation{
@@ -83,9 +79,7 @@ class ForecastController: UIViewController, UITableViewDelegate {
         }
     }
     
-    
-    
-    
+  
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("viewDidAppear")
@@ -124,7 +118,7 @@ class ForecastController: UIViewController, UITableViewDelegate {
                     DispatchQueue.main.async {
                         self?.locationLabel.text = "Din lokasjon: " + String(lat) + ", " + String(lon)
                         
-                        print("self?.locationLabel.text: \(self?.locationLabel.text)")
+//                        print("self?.locationLabel.text: \(self?.locationLabel.text)")
                         
                         self?.tableView.reloadData()
                         
@@ -225,6 +219,7 @@ extension ForecastController: UITableViewDataSource {
     
 }
 
+//MARK: - Alert Handler
 extension ForecastController {
     func presentAlert(message: String) {
         DispatchQueue.main.async {

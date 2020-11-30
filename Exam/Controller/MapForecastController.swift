@@ -138,7 +138,6 @@ class MapForecastController: UIViewController {
     
     
     
-    
     func showLocation() {
         print("before if let currentLocation")
         if let currentLocation = LocationManager.shared.currentLocation{

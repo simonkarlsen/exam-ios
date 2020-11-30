@@ -14,6 +14,7 @@ Div bilder fra: https://thenounproject.com/
 (detaljer står under hvert bilde )
 
 
+Siden det ikke står noe om dokumentasjon i oppgaven, holder jeg meg til korte kommentarer.
 
 
 Generelle kommentarer:
@@ -46,6 +47,8 @@ Kommentarer til oppgave 3:
 Kommentarer til oppgave 4:
 
 * Skrift og bilde på skjermen oppdateres ikke etter at man har gitt tilgang til posisjon (har ikke fått ordnet det), så man må gå til neste side og så tilbake igjen til Hjem-siden. 
+
+* Dagen som vises står på engelsk, men jeg regner med at det ikke gjør noe. 
 
 -----
 

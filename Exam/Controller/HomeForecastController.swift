@@ -82,6 +82,7 @@ extension HomeForecastController {
     }
 }
 
+//MARK: - Get Forecast On Location
 extension HomeForecastController {
     
     fileprivate func getCurrentLocation() {
